@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="max-w-screen-sm px-2 py-1 mx-auto">
+  <div id="app" class="max-w-screen-sm px-3 mx-auto">
     <TodoGroupHeader :title="'Pending'" :count="pendingTodos.length" />
     <TodoList :todos="pendingTodos" />
 

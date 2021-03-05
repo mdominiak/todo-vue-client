@@ -1,5 +1,5 @@
 <template>
-  <div>{{title}} {{count}}</div>
+  <div class="bg-purple-600 text-white text-center py-2 -mx-3">{{title}} {{count}}</div>
 </template>
 
 <script>

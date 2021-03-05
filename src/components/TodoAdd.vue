@@ -1,6 +1,6 @@
 <template>
-  <form v-on:submit.prevent="submitTodo">
-    <input v-model="todoName" type="text" class="w-full" />
+  <form v-on:submit.prevent="submitTodo" class="mt-1 mb-3">
+    <input v-model="todoName" type="text" class="w-full" placeholder="Add Todo" />
   </form>
 </template>
 
