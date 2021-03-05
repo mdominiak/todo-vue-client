@@ -1,6 +1,6 @@
 <template>
   <li>
-    <input type="checkbox" v-model="todo.completed" />
+    <input type="checkbox" v-model="todo.completed" class="w-8 h-8" />
     <span class="pl-2" :class="{'line-through': todo.completed}">{{ todo.name }}</span>
   </li>
 </template>

@@ -2,7 +2,9 @@
   <div id="app" class="max-w-screen-sm px-2 py-1 mx-auto">
     <TodoGroupHeader :title="'Pending'" :count="pendingTodos.length" />
     <TodoList :todos="pendingTodos" />
-    <button v-on:click="completeTodo">Add</button>
+
+    <TodoAdd v-on:todoSubmit="addTodo" />
+
     <TodoGroupHeader :title="'Completed'" :count="completedTodos.length" />
     <TodoList :todos="completedTodos" />
   </div>
@@ -11,6 +13,7 @@
 <script>
 import TodoList from './components/TodoList'
 import TodoGroupHeader from './components/TodoGroupHeader'
+import TodoAdd from './components/TodoAdd'
 
 export default {
   name: 'App',
@@ -49,13 +52,17 @@ export default {
     }
   },
   methods: {
-    completeTodo: function() {
-      this.todos[0].completed = true
+    addTodo: function (todoName) {
+      this.todos.push({
+        name: todoName,
+        completed: false
+      })
     }
   },
   components: {
     TodoList,
-    TodoGroupHeader
+    TodoGroupHeader,
+    TodoAdd
   }
 }
 </script>
