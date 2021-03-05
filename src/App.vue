@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="max-w-screen-sm px-2 py-1 mx-auto">
     <TodoList :todos="todos"/>
-    <button v-on:click="completeTodo">Complete</button>
+    <button v-on:click="completeTodo">Add</button>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ export default {
         {
           id: 1,
           name: 'milk',
-          completed: true
+          completed: false
         },
         {
           id: 2,
@@ -24,6 +24,11 @@ export default {
           completed: true
         }
       ]
+    }
+  },
+  methods: {
+    completeTodo: function() {
+      this.todos[0].completed = true
     }
   },
   components: {
