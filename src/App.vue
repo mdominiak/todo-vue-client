@@ -54,14 +54,11 @@ export default {
   },
   methods: {
     addTodo: function (todoName) {
-      this.todos.push({
-        name: todoName,
-        completed: false
-      })
+      TodoService.createTodo(todoName).then(todo => this.todos.push(todo))
     }
   },
   mounted: function() {
-    TodoService.getTodos().then(todos => this.todos = todos)
+    TodoService.fetchTodos().then(todos => this.todos = todos)
   },
   components: {
     TodoList,

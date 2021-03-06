@@ -13,13 +13,21 @@ function errorHandler(msg) {
   }
 }
 
-function getTodos() {
+function fetchTodos() {
   return axios
     .get(getUrl('/api/todos'))
     .then((response) => response.data)
     .catch(errorHandler('Failed to load todos'))
 }
 
+function createTodo(name) {
+  return axios
+    .post(getUrl('/api/todos'), { name })
+    .then((response) => response.data)
+    .catch(errorHandler('Failed to create todo'))
+}
+
 export default {
-  getTodos,
+  fetchTodos,
+  createTodo,
 }
