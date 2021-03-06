@@ -11,14 +11,14 @@ export default {
   props: {
     todo: Object
   },
-  data: function() {
-    return {
-      todoCompleted: this.todo.completed
-    }
-  },
-  watch: {
-    todoCompleted: function(newValue) {
-      this.$emit('todoUpdate', { id: this.todo.id, completed: newValue })
+  computed: {
+    todoCompleted: {
+      get: function() {
+        return this.todo.completed
+      },
+      set: function(newValue) {
+        this.$emit('todoUpdate', { id: this.todo.id, completed: newValue })
+      }
     }
   }
 }
