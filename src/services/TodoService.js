@@ -27,7 +27,16 @@ function createTodo(name) {
     .catch(errorHandler('Failed to create todo'))
 }
 
+function updateTodo(todo) {
+  const { id, ...props } = todo
+  return axios
+    .patch(getUrl(`/api/todos/${id}`), props)
+    .then((response) => response.data)
+    .catch(errorHandler('Failed to update todo'))
+}
+
 export default {
   fetchTodos,
   createTodo,
+  updateTodo,
 }

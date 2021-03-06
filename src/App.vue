@@ -1,12 +1,12 @@
 <template>
   <div id="app" class="max-w-screen-sm px-3 mx-auto">
     <TodoGroupHeader :title="'Pending'" :count="pendingTodos.length" />
-    <TodoList :todos="pendingTodos" />
+    <TodoList :todos="pendingTodos" @todoUpdate="updateTodo" />
 
-    <TodoAdd v-on:todoSubmit="addTodo" />
+    <TodoAdd @todoSubmit="addTodo" />
 
     <TodoGroupHeader :title="'Completed'" :count="completedTodos.length" />
-    <TodoList :todos="completedTodos" />
+    <TodoList :todos="completedTodos" @todoUpdate="updateTodo" />
   </div>
 </template>
 
@@ -14,34 +14,13 @@
 import TodoList from './components/TodoList'
 import TodoGroupHeader from './components/TodoGroupHeader'
 import TodoAdd from './components/TodoAdd'
-import TodoService from './services/todo_service'
+import TodoService from './services/TodoService'
 
 export default {
   name: 'App',
   data: function() {
     return {
-      todos: [
-        {
-          id: 1,
-          name: 'milk',
-          completed: false
-        },
-        {
-          id: 2,
-          name: 'bread',
-          completed: false
-        },
-        {
-          id: 3,
-          name: 'beer',
-          completed: true
-        },
-        {
-          id: 4,
-          name: 'wine',
-          completed: true
-        }
-      ]
+      todos: []
     }
   },
   computed: {
@@ -55,6 +34,11 @@ export default {
   methods: {
     addTodo: function (todoName) {
       TodoService.createTodo(todoName).then(todo => this.todos.push(todo))
+    },
+    updateTodo: function(todo) {
+      TodoService.updateTodo(todo).then(newTodo => {
+        this.todos = this.todos.map(todo => todo.id !== newTodo.id ? todo : newTodo)
+      })
     }
   },
   mounted: function() {
