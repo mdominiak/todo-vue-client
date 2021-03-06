@@ -33,16 +33,23 @@ export default {
   },
   methods: {
     addTodo: function (todoName) {
-      TodoService.createTodo(todoName).then(todo => this.todos.push(todo))
+      TodoService.createTodo(todoName).then(todo => {
+        this.todos.push(todo)
+        this.loadTodos()
+      })
     },
     updateTodo: function(todo) {
       TodoService.updateTodo(todo).then(newTodo => {
         this.todos = this.todos.map(todo => todo.id !== newTodo.id ? todo : newTodo)
+        this.loadTodos()
       })
+    },
+    loadTodos: function() {
+      TodoService.fetchTodos().then(todos => this.todos = todos)
     }
   },
   mounted: function() {
-    TodoService.fetchTodos().then(todos => this.todos = todos)
+    this.loadTodos()
   },
   components: {
     TodoList,
