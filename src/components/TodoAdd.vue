@@ -19,7 +19,6 @@ export default {
         return
       }
 
-      console.log('submitting: ' + todoName)
       this.$emit('todoSubmit', todoName)
       this.todoName = ''
     }

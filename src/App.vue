@@ -14,6 +14,7 @@
 import TodoList from './components/TodoList'
 import TodoGroupHeader from './components/TodoGroupHeader'
 import TodoAdd from './components/TodoAdd'
+import TodoService from './services/todo_service'
 
 export default {
   name: 'App',
@@ -58,6 +59,9 @@ export default {
         completed: false
       })
     }
+  },
+  mounted: function() {
+    TodoService.getTodos().then(todos => this.todos = todos)
   },
   components: {
     TodoList,
