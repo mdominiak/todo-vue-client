@@ -5,9 +5,13 @@
 
     <TodoAdd @todoSubmit="addTodo" />
 
-    <TodoGroupHeader :title="'Completed'" :count="completedTodos.length" />
-    <TodoList :todos="completedTodos" @todoUpdate="updateTodo" />
-    <button type="button" class="w-full border" v-if="completedTodos.length > 0" @click="clearCompletedTodos">Clear Completed</button>
+    <template v-if="completedTodos.length > 0">
+      <TodoGroupHeader :title="'Completed'" :count="completedTodos.length" />
+      <TodoList :todos="completedTodos" @todoUpdate="updateTodo" />
+      <div class="flex justify-center">
+        <button type="button" @click="clearCompletedTodos" class="border rounded-lg mt-1 px-3 py-1 border-gray-400 text-gray-500 text-lg">Clear Completed</button>
+      </div>
+    </template>
   </div>
 </template>
 
