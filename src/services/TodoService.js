@@ -35,8 +35,16 @@ function updateTodo(todo) {
     .catch(errorHandler('Failed to update todo'))
 }
 
+function deleteCompletedTodos() {
+  return axios
+    .delete(getUrl('/api/todos/completed'))
+    .then((response) => response.data)
+    .catch(errorHandler('Failed to delete completed todos'))
+}
+
 export default {
   fetchTodos,
   createTodo,
   updateTodo,
+  deleteCompletedTodos,
 }

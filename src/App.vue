@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="max-w-screen-sm px-3 mx-auto">
+  <div id="app" class="max-w-screen-sm px-3 pb-3 mx-auto">
     <TodoGroupHeader :title="'Pending'" :count="pendingTodos.length" />
     <TodoList :todos="pendingTodos" @todoUpdate="updateTodo" />
 
@@ -7,6 +7,7 @@
 
     <TodoGroupHeader :title="'Completed'" :count="completedTodos.length" />
     <TodoList :todos="completedTodos" @todoUpdate="updateTodo" />
+    <button type="button" class="w-full border" v-if="completedTodos.length > 0" @click="clearCompletedTodos">Clear Completed</button>
   </div>
 </template>
 
@@ -46,6 +47,9 @@ export default {
     },
     loadTodos: function() {
       TodoService.fetchTodos().then(todos => this.todos = todos)
+    },
+    clearCompletedTodos: function() {
+      TodoService.deleteCompletedTodos().then(() => this.loadTodos())
     }
   },
   mounted: function() {
